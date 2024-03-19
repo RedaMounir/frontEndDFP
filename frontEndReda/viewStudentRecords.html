@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Student Records</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #0000FF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative; /* Made header a positioning context */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    nav {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+
+    nav a {
+      display: block;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #45a049;
+    }
+
+    section {
+      flex: 1;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-left: 20px;
+    }
+
+    .profile-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .semester-dropdown,
+    .school-dropdown { /* Added styling for school dropdown */
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+
+    .school-dropdown {
+      top: 50px; /* Adjusted position to avoid overlap */
+    }
+
+    select {
+      padding: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>(Medical View) All Schools and Student Records</h1>
+  </header>
+
+  <div class="container">
+    <nav>
+      <a href="#" onclick="showSection('viewSchoolAdministrators')">View/Edit Student Results</a>
+      <a href="#" onclick="viewProfile()">Profile Settings</a>
+      <a href="#" onclick="reportIssue()">Report an Issue</a>
+	  <a href="portalLogin.html" onclick="viewStudentRecords()">Log Out</a>
+    </nav>
+
+    <section>
+      <div class="profile-box">
+        <!-- Moved dropdowns into the profile box -->
+        <div class="semester-dropdown">
+          <label for="semesterSelect">Select Semester:</label>
+          <select id="semesterSelect" onchange="changeSemester()">
+            <option value="2023fall">2023 Fall Semester</option>
+            <option value="2024spring">2024 Spring Semester</option>
+            <option value="2024fall">2024 Fall Semester</option>
+            <option value="2025spring">2025 Spring Semester</option>
+          </select>
+        </div>
+
+        <!-- Added school dropdown -->
+        <div class="school-dropdown">
+          <label for="schoolSelect">Select School:</label>
+          <select id="schoolSelect" onchange="changeSchool()">
+            <option value="alabama">Alabama University</option>
+            <option value="texas">Texas University</option>
+          </select>
+        </div>
+
+        <div class="profile-info">
+          <h2>Student Records</h2>
+          <ul id="studentRecordsList">
+            <!-- JavaScript will populate this list -->
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Function to generate random student records
+    function generateRandomStudentRecords() {
+      const studentRecordsList = document.getElementById('studentRecordsList');
+      studentRecordsList.innerHTML = '';
+
+      for (let i = 1; i <= 5; i++) {
+        const studentID = generateRandomID();
+        const backgroundTest = Math.random() < 0.5 ? 'Passed' : 'Failed';
+        const drugTest = Math.random() < 0.5 ? 'Passed' : 'Failed';
+        const compliance = Math.random() < 0.5 ? 'Passed' : 'Failed';
+
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <p><strong>Student ID:</strong> ${studentID}</p>
+          <p><strong>Background Test:</strong> ${backgroundTest}</p>
+          <p><strong>Drug Test:</strong> ${drugTest}</p>
+          <p><strong>Compliance:</strong> ${compliance}</p>
+          <hr>
+        `;
+
+        studentRecordsList.appendChild(listItem);
+      }
+    }
+
+    // Function to generate random student ID
+    function generateRandomID() {
+      return 'ABC' + Math.floor(Math.random() * 1000);
+    }
+
+    // Function to change semester
+    function changeSemester() {
+      const semesterSelect = document.getElementById('semesterSelect');
+      const selectedSemester = semesterSelect.options[semesterSelect.selectedIndex].text;
+      alert(`Selected Semester: ${selectedSemester}`);
+      // You can add logic to fetch and display records for the selected semester
+      // For now, just showing an alert
+      generateRandomStudentRecords();
+    }
+
+    // Function to change school
+    function changeSchool() {
+      const schoolSelect = document.getElementById('schoolSelect');
+      const selectedSchool = schoolSelect.options[schoolSelect.selectedIndex].text;
+      alert(`Selected School: ${selectedSchool}`);
+      // You can add logic to fetch and display records for the selected school
+      // For now, just showing an alert
+      generateRandomStudentRecords();
+    }
+
+    // Function to view student records
+    function viewStudentRecords() {
+      generateRandomStudentRecords();
+    }
+  </script>
+
+</body>
+</html>

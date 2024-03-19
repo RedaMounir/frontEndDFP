@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #0000FF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .reminder-section {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px; /* Added padding */
+            margin-bottom: 20px;
+            background-color: #fff; /* Added background color */
+        }
+
+        .reminder-section h2 {
+            color: #0000FF;
+        }
+
+        .important-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .student-check-ins,
+        .new-users {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px; /* Added padding */
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: #fff; /* Added background color */
+        }
+
+        .user-info,
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            background-color: #f9f9f9; /* Added background color */
+        }
+
+        .user-info p,
+        .student-info p {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .status-dropdown {
+            width: 120px;
+            margin-right: 10px;
+        }
+
+        .completed-button,
+        .return-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            color: white;
+        }
+
+        .completed-button {
+            background-color: #0000FF;
+        }
+
+        .completed-button:hover {
+            background-color: #45a049;
+        }
+
+        .return-button {
+            background-color: #333;
+        }
+
+        .return-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Welcome Medical Professional!</h1>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <!-- Sections for viewing students' records and onsite check-in form -->
+            <div class="reminder-section">
+                <h2>Student Check-ins</h2>
+                <!-- Important message for admin -->
+                <p class="important-message">Important: Action required for student check-ins</p>
+                <!-- Student check-ins with scroll -->
+                <div class="student-check-ins">
+                    <div class="student-info">
+                        <p><strong>First Name:</strong> John</p>
+                        <p><strong>Last Name:</strong> Doe</p>
+                        <p><strong>Student ID:</strong> ABC123</p>
+                        <p><strong>School Name:</strong> XYZ School</p>
+                        <div>
+                            <label for="drugTest">Drug Test:</label>
+                            <select class="status-dropdown" id="drugTest">
+                                <option value="Passed">Passed</option>
+                                <option value="Failed">Failed</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                            <label for="backgroundCheck">Background Check:</label>
+                            <select class="status-dropdown" id="backgroundCheck">
+                                <option value="Passed">Passed</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                            <label for="compliance">Compliance:</label>
+                            <select class="status-dropdown" id="compliance">
+                                <option value="Passed">Passed</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                            <label for="drugTest">Measurement Size(Fit Test):</label>
+                            <select class="status-dropdown" id="drugTest">
+                                <option value="Passed">Small</option>
+                                <option value="Failed">Medium</option>
+                                <option value="Pending">Large</option>
+                            </select>
+                        </div>
+                        <button class="completed-button" onclick="markCompleted('ABC123')">Send Results</button>
+                    </div>
+                    <div class="student-info">
+                        <p><strong>First Name:</strong> Jane</p>
+                        <p><strong>Last Name:</strong> Smith</p>
+                        <p><strong>Student ID:</strong> DEF456</p>
+                        <p><strong>School Name:</strong> ABC School</p>
+                        <div>
+                            <label for="drugTest">Drug Test:</label>
+                            <select class="status-dropdown" id="drugTest">
+                                <option value="Passed">Passed</option>
+                                <option value="Failed">Failed</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                            <label for="backgroundCheck">Background Check:</label>
+                            <select class="status-dropdown" id="backgroundCheck">
+                                <option value="Passed">Passed</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                            <label for="compliance">Compliance:</label>
+                            <select class="status-dropdown" id="compliance">
+                                <option value="Passed">Passed</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                            <label for="drugTest">Measurement Size(Fit Test):</label>
+                            <select class="status-dropdown" id="drugTest">
+                                <option value="Passed">Small</option>
+                                <option value="Failed">Medium</option>
+                                <option value="Pending">Large</option>
+                            </select>
+                        </div>
+                        <button class="completed-button" onclick="markCompleted('DEF456')">Send Results</button>
+                    </div>
+                    
+                </div>
+                <button class="return-button" onclick="returnToMenu()">Return</button>
+                <a href="medicalViewer.html" onclick="showSection('start-work-button')">Return</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function markCompleted(studentId) {
+            const drugTestStatus = document.getElementById(`drugTest`).value;
+            const backgroundCheckStatus = document.getElementById(`backgroundCheck`).value;
+            const complianceStatus = document.getElementById(`compliance`).value;
+
+            // Perform logic to mark the student with ID studentId as completed
+            console.log(`Student ${studentId} marked as completed with Drug Test: ${drugTestStatus}, Background Check: ${backgroundCheckStatus}, Compliance: ${complianceStatus}`);
+        }
+
+        function returnToMenu() {
+            // Add logic to return to the menu or perform any other action
+            console.log("Returning to menu...");
+        }
+    </script>
+
+</body>
+
+</html>

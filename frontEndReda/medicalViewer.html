@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Professional</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #0000FF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px; 
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .menu-container {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      position: fixed;
+      height: 100%;
+      transition: width 0.3s;
+      overflow: hidden;
+    }
+
+    .menu-title {
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+      max-height: 200px; 
+      transition: max-height 0.3s ease-out;
+    }
+
+    .menu-options a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-options a:hover {
+      background-color: #45a049;
+    }
+
+    .content {
+      flex: 1;
+      margin-left: 220px;
+    }
+
+    .reminder-section {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .reminder-section h2 {
+      color: #0000FF;
+    }
+
+    .important-message {
+      color: red; 
+      font-weight: bold;
+    }
+
+    .student-check-ins, .new-users {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .user-info, .student-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .user-info p, .student-info p {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    .start-work-button {
+      background-color: #0000FF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .start-work-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome Medical Professional</h1>
+	   <div class="school-name">
+      <label for="schoolSelect">Select School:</label>
+      <select id="schoolSelect" onchange="changeSchool()">
+        <option value="University Alabama">University Alabama</option>
+        <option value="2024spring">University Wisonsin</option>
+        <option value="2024fall">University Texas</option>
+        <option value="2025spring">University Memphis</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="menu-container" id="menuContainer">
+      <div class="menu-title" onclick="toggleMenu()">
+        Menu
+        <div>&#x25BC;</div>
+      </div>
+      <div class="menu-options" id="menuOptions">
+        <a href="viewStudentRecords.html" onclick="showSection('viewStudents')">View/Edit Students Records</a>
+        <a href="studentCheckInForm.html" onclick="showSection('checkInForm')">Onsite Check-in Form</a>
+		<a href="portalLogin.html" onclick="showSection('checkInForm')">Log out</a>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Sections for viewing students' records and onsite check-in form -->
+      <div class="reminder-section">
+        <h2>Student Check-ins</h2>
+        <!-- Important message for admin -->
+        <p class="important-message">Important: Action required for student check-ins</p>
+        <!-- Student check-ins with scroll -->
+        <div class="student-check-ins">
+          <div class="student-info">
+            <p><strong>First Name:</strong> John</p>
+            <p><strong>Last Name:</strong> Doe</p>
+            <p><strong>Student ID:</strong> ABC123</p>
+            <p><strong>School Name:</strong> XYZ School</p>
+            <button class="start-work-button">Start Work</button>
+			  <a href="medicalStartWork.html" onclick="showSection('start-work-button')">Start Work</a>
+          </div>
+          <div class="student-info">
+            <p><strong>First Name:</strong> Jane</p>
+            <p><strong>Last Name:</strong> Smith</p>
+            <p><strong>Student ID:</strong> DEF456</p>
+            <p><strong>School Name:</strong> ABC School</p>
+            <button class="start-work-button">Start Work</button>
+			  <a href="medicalStartWork.html" onclick="showSection('start-work-button')">Start Work</a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+      });
+      document.getElementById(sectionId).style.display = 'block';
+      // Close the menu after selecting an option
+      document.getElementById('menuOptions').classList.remove('show');
+    }
+
+    function toggleMenu() {
+      const menuOptions = document.getElementById('menuOptions');
+      menuOptions.classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>

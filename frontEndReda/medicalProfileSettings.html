@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #0000FF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    nav a.active {
+      background-color: #0000FF;
+      color: white;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    .input-container {
+      margin-top: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    .action-button {
+      background-color: #0000FF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px;
+      display: inline-block;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Medical Profile Settings</h1>
+  </header>
+
+  <div class="container">
+    <nav>
+	  <a href="studentProfileView.html" class="active">Profile Settings</a>
+      <a href="studentViewTesting.html">View Student Reconds</a>
+	  <a href="portalLogin.html">Sign out</a>
+		
+    </nav>
+
+    <section>
+      <div class="input-container">
+        <label for="newPassword">Update Password:</label>
+        <input type="password" id="newPassword" placeholder="Enter new password">
+        <button class="action-button" onclick="updatePassword()">Update Password</button>
+      </div>
+
+      
+      <p>...</p>
+    </section>
+  </div>
+
+  <script>
+    
+    function updatePassword() {  
+      alert("Password updated!");
+      // update logic
+    }
+  </script>
+
+</body>
+</html>

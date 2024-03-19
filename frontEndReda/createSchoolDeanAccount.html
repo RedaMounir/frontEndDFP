@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create School Dean Account</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #0000FF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px; 
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .menu-container {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      position: fixed;
+      height: 100%;
+      transition: width 0.3s;
+      overflow: hidden;
+    }
+
+    .menu-title {
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .menu-options.show {
+      max-height: 200px; 
+    }
+
+    .menu-options a {
+      display: block;
+      text-decoration: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-options a:hover {
+      background-color: #45a049;
+    }
+
+    .content {
+      flex: 1;
+      margin-left: 220px;
+    }
+
+    
+    .reminder-section {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px; /* Adjusted padding for better spacing */
+      margin-bottom: 20px;
+      background-color: #fff; /* Added background color */
+    }
+
+    .reminder-section h2 {
+      color: #0000FF;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Adjusted styling for buttons */
+    .start-work-button {
+      background-color: #0000FF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .start-work-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome Admin!</h1>
+  </header>
+
+  <div class="container">
+    <div class="menu-container" id="menuContainer">
+      <div class="menu-title" onclick="toggleMenu()">
+        Menu
+        <div>&#x25BC;</div>
+      </div>
+      <div class="menu-options" id="menuOptions">
+        <a href="#" onclick="showSection('createSchoolDeanAccount')">Create School Dean Account</a>
+        <a href="#" onclick="showSection('viewStudents')">View Students Enrolled</a>
+        <a href="#" onclick="showSection('checkInForm')">Onsite Check-in Form</a>
+        <a href="#" onclick="showSection('feedbackForm')">Feedback Responses</a>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Content for creating a School Dean Account -->
+      <div class="reminder-section">
+        <h2>Create School Dean Account</h2>
+        <form id="createDean">
+          <div class="form-group">
+            <label for="schoolName">School Name:</label>
+            <input type="text" id="schoolName" name="schoolName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="deanFirstName">First Name:</label>
+            <input type="text" id="deanFirstName" name="deanFirstName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="deanLastName">Last Name:</label>
+            <input type="text" id="deanLastName" name="deanLastName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="deanEmail">Email:</label>
+            <input type="email" id="deanEmail" name="deanEmail" required>
+          </div>
+
+          <!-- Added section for temporary password -->
+          <div class="form-group">
+            <label for="tempPassword">Temporary Password:</label>
+            <input type="password" id="tempPassword" name="tempPassword" required>
+          </div>
+
+          <a href="#" class="start-work-button" onclick="createDeanAccount()">Create Account</a>
+          <a href="#" class="start-work-button" onclick="createTempPassword()">Create Temporary Password</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- showing sections and toggling menu -->
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+      });
+
+      document.getElementById(sectionId).style.display = 'block';
+      // Close the menu after selecting an option
+      document.getElementById('menuOptions').classList.remove('show');
+    }
+
+    function toggleMenu() {
+      const menuOptions = document.getElementById('menuOptions');
+      menuOptions.classList.toggle('show');
+    }
+
+    function createDeanAccount() {
+      // Implement  logic for creating a School Dean account here
+      alert('Dean account created!');
+    }
+
+    function createTempPassword() {
+      // Implement  logic for creating a temporary password here
+      alert('Temporary password created!');
+    }
+  </script>
+
+</body>
+</html>

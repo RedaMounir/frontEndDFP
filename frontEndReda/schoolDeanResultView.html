@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Home Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #0000FF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        nav {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav button {
+            background-color: #0000FF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        section {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .profile-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .status {
+            background-color: #45a049;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .clickable {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #0000FF;
+            transition: color 0.3s ease;
+        }
+
+        .clickable:hover {
+            color: #45a049;
+        }
+
+        /* Added styling for semester dropdown */
+        .semester-dropdown {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        /* Added styling for random date */
+        .random-date {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Added styling for random names */
+        .random-names {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Welcome School Dean!</h1>
+        <!-- Added semester dropdown -->
+        <div class="semester-dropdown">
+            <label for="semesterSelect">Select Semester:</label>
+            <select id="semesterSelect" onchange="changeSemester()">
+                <option value="2023fall">2023 Fall Semester</option>
+                <option value="2024spring">2024 Spring Semester</option>
+                <option value="2024fall">2024 Fall Semester</option>
+                <option value="2025spring">2025 Spring Semester</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <button onclick="viewTestingResults()">Student Testing Results</button>
+            <button onclick="viewProfile()">Profile Settings</button>
+            <button onclick="reportIssue()">Report an Issue</button>
+            <button onclick="reportIssue()">Log Out</button>
+        </nav>
+
+        <section>
+            <div class="random-date" id="randomDate1"></div>
+            <div class="random-names" id="randomNames1"></div>
+            <div class="profile-box">
+                <div class="profile-info">
+                    <h2>Student Results Are In!</h2>
+                    <!-- Dynamic list of student results -->
+                    <ul id="studentResultsList">
+                        <!-- JavaScript will populate this list -->
+                    </ul>
+                </div>
+                <div class="status">Passed</div>
+				<div class="status">Passed</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Function to generate random student results
+        function generateRandomStudentResults() {
+            const studentResultsList = document.getElementById('studentResultsList');
+            studentResultsList.innerHTML = '';
+
+            for (let i = 1; i <= 5; i++) {
+                const studentID = generateRandomID();
+                const firstName = generateRandomName('first');
+                const lastName = generateRandomName('last');
+                const backgroundTest = Math.random() < 0.5 ? 'Passed' : 'Failed';
+                const drugTest = generateRandomMeasurement('Drug Test');
+                const fitTest = generateRandomMeasurement('Fit Test');
+                const compliance = Math.random() < 0.5 ? 'Passed' : 'Failed';
+                const randomDate = generateRandomDate();
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                  
+                  <p><strong>First Name:</strong> ${firstName}</p>
+                  <p><strong>Last Name:</strong> ${lastName}</p>
+				  <p><strong>Student ID:</strong> ${studentID}</p>
+                  <p><strong>Background Test:</strong> ${backgroundTest}</p>
+                  <p><strong>Drug Test:</strong> ${drugTest}</p>
+                  <p><strong>Fit Test Measurement:</strong> ${fitTest}</p>
+                  <p><strong>Compliance:</strong> <span class="clickable" onclick="handleComplianceClick()"> ${compliance}</span></p>
+                  <hr>
+                `;
+
+                studentResultsList.appendChild(listItem);
+
+                // Set random date in each section
+                document.getElementById(`randomDate${i}`).innerText = `Date: ${randomDate}`;
+                // Set random names in each section
+                document.getElementById(`randomNames${i}`).innerText = `${firstName} ${lastName}`;
+            }
+        }
+
+        // Function to generate random student ID
+        function generateRandomID() {
+            return 'ABC' + Math.floor(Math.random() * 1000);
+        }
+
+        // Function to generate random measurement (small, medium, large)
+        function generateRandomMeasurement(measurementType) {
+            const options = ['Small', 'Medium', 'Large'];
+            const randomIndex = Math.floor(Math.random() * options.length);
+            return options[randomIndex];
+        }
+
+        // Function to generate random name (first or last)
+        function generateRandomName(type) {
+            const firstNames = ['John', 'Jane', 'Bob', 'Alice', 'Charlie'];
+            const lastNames = ['Doe', 'Smith', 'Johnson', 'Brown', 'Wilson'];
+            const names = (type === 'first') ? firstNames : lastNames;
+            const randomIndex = Math.floor(Math.random() * names.length);
+            return names[randomIndex];
+        }
+
+        // Function to generate random date MM/DD/YYYY
+        function generateRandomDate() {
+            const randomDate = new Date(+(new Date()) - Math.floor(Math.random() * 10000000000));
+            const month = String(randomDate.getMonth() + 1).padStart(2, '0');
+            const day = String(randomDate.getDate()).padStart(2, '0');
+            const year = randomDate.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+
+        // Function to handle compliance click
+        function handleComplianceClick() {
+            alert('Compliance Clicked!');
+        }
+
+        // Function to change semester
+        function changeSemester() {
+            const semesterSelect = document.getElementById('semesterSelect');
+            const selectedSemester = semesterSelect.options[semesterSelect.selectedIndex].text;
+            alert(`Selected Semester: ${selectedSemester}`);
+            // You can add logic to fetch and display results for the selected semester
+            // For now, just showing an alert
+        }
+
+        // Initial load
+        generateRandomStudentResults();
+    </script>
+
+</body>
+
+</html>

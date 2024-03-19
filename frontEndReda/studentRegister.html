@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 300px;
+      margin: 100px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+    a.button {
+      display: block;
+      background-color: #0000FF;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    a.button:hover {
+      background-color: #45a049;
+    }
+
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    .return-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Student Registration</h2>
+    <form action="#" method="post">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="schoolID">School ID:</label>
+      <input type="text" id="schoolID" name="schoolID">
+
+      <label for="createPassword">Create Password:</label>
+      <input type="password" id="createPassword" name="createPassword" required>
+
+      <label for="createPassword">Confirm Password:</label>
+      <input type="password" id="createPassword" name="createPassword" required>
+
+      <label for="university">School:</label>
+      <select id="university" name="university">
+        <!-- Add options for all schools in the United States in alphabetical order -->
+        <option value="alabama university">Alabama University</option>
+        <option value="texas university">Texas University</option>
+        <option value="test">Test</option>
+        <option value="test">Test</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <a href="studentViewTesting.html" class="button">Register</a>
+    </form>
+
+    <div class="message">
+      If you're a school administrator needing to register an account, please <a href="contact.html">click this link</a> to return to the contact page.
+    </div>
+  </div>
+
+</body>
+</html>
